@@ -2,7 +2,7 @@ let webpack = require('webpack');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let autoprefixer  = require('autoprefixer');
-
+// let IgnorePlugin =  require("webpack").IgnorePlugin;
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -23,6 +23,9 @@ module.exports = {
           loader: 'css-loader?importLoaders=1!postcss-loader!sass-loader'
         })
       },
+    ],
+    noParse: [
+      /alasql/
     ]
   },
 
@@ -45,9 +48,10 @@ module.exports = {
           })
         ]
       }
-    })
-  ],
 
+    }),
+    // new IgnorePlugin(/(^fs$|cptable|jszip|xlsx|^es6-promise$|^net$|^tls$|^forever-agent$|^tough-cookie$|cpexcel|^path$)/),
+  ],
   devServer: {
     contentBase: "./public",
     historyApiFallback: true,
